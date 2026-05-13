@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나루토 수리검 훈련장</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://wallpapercave.com/wp/wp2757866.jpg'); /* 나루토 훈련장 배경 */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .shuriken {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/60/Naruto_Shuriken.png'); /* 수리검 이미지 */
+            background-size: cover;
+            background-position: center;
+            transform: rotate(0deg);
+            animation: spin 0.5s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>나루토 수리검 훈련장</h1>
+    <button onclick="throwShuriken()" style="position: absolute; top: 80%; left: 50%; transform: translateX(-50%); padding: 10px 20px; font-size: 16px;">수리검 던지기</button>
+
+    <script>
+        function throwShuriken() {
+            const shuriken = document.createElement('div');
+            shuriken.classList.add('shuriken');
+            document.body.appendChild(shuriken);
+
+            // 수리검 초기 위치 설정
+            shuriken.style.left = '50%';
+            shuriken.style.bottom = '10%';
+
+            // 수리검 애니메이션
+            const animation = shuriken.animate([
+                { transform: 'translate(-50%, 0)' },
+                { transform: 'translate(-50%, -100vh)' }
+            ], {
+                duration: 1000,
+                easing: 'linear'
+            });
+
+            // 애니메이션 종료 후 수리검 제거
+            animation.onfinish = () => {
+                shuriken.remove();
+            };
+        }
+    </script>
+</body>
+</html>
